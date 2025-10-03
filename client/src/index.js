@@ -1,33 +1,14 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './components/Login';
-import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './components/Dashboard';
-import Sidebar from './components/Sidebar';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import App from './App';
 
-function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <div className="app-container">
-                <Sidebar />
-                <main className="main-content">
-                  <Dashboard />
-                </main>
-              </div>
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
-    </div>
-  );
-}
-
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
